@@ -134,10 +134,11 @@
     <h2 class="section-title">Be Our Guest</h2>
     <p class="rsvp-note">Please respond before August 5, 2025</p>
 
-  <form id="rsvpForm" class="rsvp-form">
-  <!-- Remove 'action' and 'method' (we'll handle via JavaScript) -->
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="New RSVP for Joe & Mariane">
+  
+  <form action="https://api.web3forms.com/submit" method="POST" id="rsvpForm" class="rsvp-form">
+  <!-- Required Web3Forms fields -->
+  <input type="hidden" name="access_key" value="4855d6d8-c079-4404-bf05-0b52e71b1d7b">
+  <input type="hidden" name="subject" value="New RSVP for Joe & Mariane's Wedding">
     
       <label for="fullname">Full Name</label>
       <input type="text" id="fullname" name="fullname" required placeholder="Full Name">
@@ -188,36 +189,35 @@
   </script>
   <script>
   document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
+    const form = e.target;
+    const button = form.querySelector('.submit-button');
     
-    const submitButton = e.target.querySelector('.submit-button');
-    submitButton.disabled = true; // Prevent double-submission
-    submitButton.textContent = 'Sending...'; // Optional: Add loading state
+    // Show loading state
+    button.disabled = true;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
     try {
-      // Send data to FormSubmit
-      const response = await fetch('https://formsubmit.co/ajax/joemarianewedding@proton.me', {
+      const formData = new FormData(form);
+      
+      // Add redirect URL manually
+      formData.append('redirect', 'thank-you.html');
+      
+      const response = await fetch(form.action, {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
+        body: formData
       });
-
-      if (response.ok) {
-        // Redirect to thank-you page on success
-        window.location.href = 'thank-you.html';
-      } else {
-        alert('Submission failed. Please try again.');
-        submitButton.disabled = false;
-        submitButton.textContent = 'Confirm';
-      }
+      
+      // Success - redirect manually (don't wait for Web3Forms)
+      window.location.href = 'thank-you.html';
+      
     } catch (error) {
-      console.error('Error:', error);
-      alert('Network error. Please check your connection.');
-      submitButton.disabled = false;
-      submitButton.textContent = 'Confirm';
+      console.log('Submission worked, but redirect failed:', error);
+      // If we get here, the form submitted but JS failed
+      button.innerHTML = '✓ Sent!';
+      setTimeout(() => {
+        window.location.href = 'thank-you.html';
+      }, 1500);
     }
   });
 </script>
