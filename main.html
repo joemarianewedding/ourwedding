@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joe & Mariane's Wedding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    h1, h2, h3, .agenda-item, a {
+      font-family: 'Great Vibes', cursive;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .agenda-item::before {
+      margin-right: 8px;
+      font-size: 1.2em;
+    }
+    section {
+      backdrop-filter: blur(1px);
+    }
+    .agenda-item, .agenda-item a {
+      font-size: 1.5em;
+    }
+    .background-slideshow .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6); /* lighter overlay */
+      z-index: 1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Try to maintain audio continuity when coming from index page
+    const audio = document.getElementById('wedding-audio');
+    if (audio.paused) {
+      audio.volume = 0.5;
+      audio.play().catch(error => {
+        console.log("Autoplay prevented:", error);
+      });
+    }
+  });
+</script>
+<body>
+  <!-- Background Slideshow -->
+  <div class="background-slideshow">
+    <div class="overlay"></div>
+    <img src="bride_groom1.png" class="active" alt="Bride and Groom 1" />
+    <img src="bride_groom2.png" alt="Bride and Groom 2" />
+  </div>
+
+  <!-- Music -->
+  <audio id="wedding-audio" loop>
+  <source src="calm-music.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+
+
+  <!-- Main Section -->
+  <div class="snap-container">
+  <section>
+    <p class="bible-verse">
+    “Love is patient, love is kind. It does not envy, it does not boast, it is not proud.”<br>— 1 Corinthians 13:4
+    </p>
+    <h1>Joe & Mariane</h1>
+    <h3>Are Getting Married</h3>
+    <p class="scroll-indicator">Scroll down to discover more</p>
+  </section>
+
+  <!-- Hour and Location Section -->
+  <!-- New When & Where Section -->
+  <!-- Update your When & Where section to this -->
+<section>
+  <div class="when-where-container">
+    <div class="celebration-image-container">
+      <img src="celebration-cropped.png" alt="Wedding time" class="celebration-image">
+    </div>
+    
+    <div class="location-card">
+      <div class="venue-name">OUR LADY OF SALVATION CHURCH</div>
+      <div class="venue-address">Maamrieh, Lebanon</div>
+      <a href="https://maps.app.goo.gl/51QGtzf7M5k1JwEo8" class="map-button">
+         Church Location
+      </a>
+    </div>
+    
+    <div class="dinner-label">DINNER TO FOLLOW AT</div>
+    
+    <div class="location-card">
+      <div class="venue-name">AL Mokhtar Restaurant</div>
+      <div class="venue-address">Jensneya, Lebanon</div>
+      <a href="https://maps.app.goo.gl/ELgF1s1vNzCyxisE8" class="map-button">
+         Venue Location
+      </a>
+    </div>
+    
+    <p class="scroll-indicator">Scroll down to see the agenda</p>
+  </div>
+</section>
+
+  <!-- Agenda Section -->
+  <!-- Update your Agenda section to this -->
+<section class="agenda-section">
+  <div class="agenda-image-container">
+    <img src="Timeline.png" alt="Wedding Agenda" class="agenda-image">
+  </div>
+  <p class="scroll-indicator">Scroll down to view the gift registry</p>
+</section>
+
+  <!-- Gift Registry Section -->
+  <section>
+    <h2>Gift Registry</h2>
+    <p class="agenda-item">Your presence is our biggest gift!<br> If you wish to celebrate our special day with a gift, a wedding list is available</p>
+    <ul>
+      <div class="agenda-item"> <a href="#" target="_blank">Whish Money</a></div>
+      <div class="agenda-item"> 20230917-03</div>
+    </ul>
+    <p class="scroll-indicator">Scroll down to contact us</p>
+  </section>
+
+  <!-- Contact Section -->
+  <!-- Update your contact section to this -->
+<section>
+  <div class="contact-container">
+    <h2 class="section-title">Be Our Guest</h2>
+    <p class="rsvp-note">Please respond before August 5, 2025</p>
+
+    <form action="https://formsubmit.co/joemarianewedding@proton.me" method="POST" class="rsvp-form">
+      <!-- Disable CAPTCHA -->
+    <!-- <form action="/submit" method="POST" class="rsvp-form"> -->
+
+      <input type="hidden" name="_captcha" value="false">
+    
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" required placeholder="Full Name">
+    
+      <label for="attending">Are you attending?</label>
+      <select id="attending" name="attending" required>
+        <option value="">Select an option</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    
+      <label for="number">Number of attendees</label>
+      <select id="number" name="number">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+    
+      <label for="attendees">Attendees' names</label>
+      <input type="text" id="attendees" name="attendees" placeholder="Attendees' names">
+    
+      <label for="message">Leave a message</label>
+      <textarea id="message" name="message" rows="3" placeholder="Your message..."></textarea>
+    
+      <button type="submit" class="submit-button">Confirm</button>
+    </form>
+  </div>
+</section>
+  </div>
+  
+
+  <script>
+    const images = document.querySelectorAll('.background-slideshow img');
+    let index = 0;
+
+    setInterval(() => {
+      images[index].classList.remove('active');
+      index = (index + 1) % images.length;
+      images[index].classList.add('active');
+    }, 8000);
+  </script>
+</body>
+</html>
