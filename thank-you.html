@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You | Joe & Mariane's Wedding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background-color: #faf4f0;
+      color: #5a4a42;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .thank-you-container {
+      position: relative;
+      z-index: 10;
+      max-width: 600px;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      color: #b38a6d;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .home-button {
+      font-family: 'Playfair Display', serif;
+      background: #b38a6d;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .home-button:hover {
+      background: #9a7256;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Floral decorations */
+    .floral {
+      position: absolute;
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    .floral-1 {
+      top: 10%;
+      left: 5%;
+      font-size: 8rem;
+      color: #b38a6d;
+      transform: rotate(-15deg);
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .floral-2 {
+      bottom: 10%;
+      right: 5%;
+      font-size: 8rem;
+      color: #b38a6d;
+      transform: rotate(15deg);
+      animation: float 8s infinite ease-in-out;
+    }
+
+    /* Background blur effect */
+    .background-blur {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('bride_groom1.png') no-repeat center center;
+      background-size: cover;
+      filter: blur(5px) brightness(0.7);
+      z-index: -1;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-15deg); }
+      50% { transform: translateY(-20px) rotate(-15deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Blurred background -->
+  <div class="background-blur"></div>
+
+  <!-- Floral decorative elements -->
+  <div class="floral floral-1">
+    <i class="fas fa-leaf"></i>
+  </div>
+  <div class="floral floral-2">
+    <i class="fas fa-leaf"></i>
+  </div>
+
+  <!-- Main content -->
+  <div class="thank-you-container">
+    <h1>Thank You!</h1>
+    <p>Your RSVP has been received. We're thrilled to celebrate our special day with you.</p>
+    <p><i class="fas fa-heart" style="color: #e8a3a3;"></i> Joe & Mariane</p>
+    <a href="main.html" class="home-button">Back to Wedding Site</a>
+  </div>
+</body>
+</html>

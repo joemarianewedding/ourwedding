@@ -134,11 +134,10 @@
     <h2 class="section-title">Be Our Guest</h2>
     <p class="rsvp-note">Please respond before August 5, 2025</p>
 
-    <form action="https://formsubmit.co/joemarianewedding@proton.me" method="POST" class="rsvp-form">
-      <!-- Disable CAPTCHA -->
-    <!-- <form action="/submit" method="POST" class="rsvp-form"> -->
-
-      <input type="hidden" name="_captcha" value="false">
+  <form id="rsvpForm" class="rsvp-form">
+  <!-- Remove 'action' and 'method' (we'll handle via JavaScript) -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="New RSVP for Joe & Mariane">
     
       <label for="fullname">Full Name</label>
       <input type="text" id="fullname" name="fullname" required placeholder="Full Name">
@@ -187,5 +186,40 @@
       images[index].classList.add('active');
     }, 8000);
   </script>
+  <script>
+  document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    
+    const submitButton = e.target.querySelector('.submit-button');
+    submitButton.disabled = true; // Prevent double-submission
+    submitButton.textContent = 'Sending...'; // Optional: Add loading state
+
+    try {
+      // Send data to FormSubmit
+      const response = await fetch('https://formsubmit.co/ajax/george.fadel@rocketmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
+      });
+
+      if (response.ok) {
+        // Redirect to thank-you page on success
+        window.location.href = 'thank-you.html';
+      } else {
+        alert('Submission failed. Please try again.');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Confirm';
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Network error. Please check your connection.');
+      submitButton.disabled = false;
+      submitButton.textContent = 'Confirm';
+    }
+  });
+</script>
 </body>
 </html>
